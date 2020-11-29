@@ -2,8 +2,8 @@ const express = require('express');
 const {con} = require('../db/index');
 
 exports.transactionPost =  async (req,res)=>{
-    console.log(req);
-    dataBody = req.body.pop();
+    dataBody = req.body;
+    nambahan = dataBody.nambahan;
     nambahan = dataBody.nambahan;
     amount = dataBody.amount;
     saldo = dataBody.saldo; //kalo API Java Bisa diganti fetch
