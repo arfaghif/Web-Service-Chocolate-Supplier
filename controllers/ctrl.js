@@ -1,15 +1,18 @@
-const db = require('../db')
+const {con} = require('../db/index')
 
-getIngrid = async(req,res) => {
-    db.con.connect(function(err) {
-        if (err) throw err;
-        con.query("SELECT nama, price_unit FROM bahan", function (err, res, fields) {
-          if (err) throw err;
-          console.log(res);
-        });
-      });
+exports.getIngrid = async(req,res) => {
+    get_info((result)=>{
+      res.json(result);
+    })
+}
+function get_info(callback){
+      
+  con.query("SELECT * FROM bahan", function (err, res) {
+      if (err){
+          throw err;
+      }
+      console.log(res);
+      return callback(res);
+  })
 }
 
-module.exports = {
-    getIngrid
-}
